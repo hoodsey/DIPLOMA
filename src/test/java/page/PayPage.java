@@ -49,25 +49,27 @@ public class PayPage {
     @FindBy(css = ".input__sub")
     private WebElement ErrorValueNumber;
 
+    @Step("Ввод в форму данных: {card}")
     public void inputData(DataHelper.bankCard card) {
-        if(card.getNumber() != null) {
+        if (card.getNumber() != null) {
             number.sendKeys(card.getNumber());
         }
-        if(card.getMonth() != null) {
+        if (card.getMonth() != null) {
             month.sendKeys(card.getMonth());
         }
-        if(card.getYear() != null) {
+        if (card.getYear() != null) {
             year.sendKeys(card.getYear());
         }
-        if(card.getHolder() != null) {
+        if (card.getHolder() != null) {
             holder.sendKeys(card.getHolder());
         }
-        if(card.getCvc() != null) {
+        if (card.getCvc() != null) {
             cvc.sendKeys(card.getCvc());
         }
     }
+
     @Step("Нажатие кнопки 'Продолжить'")
-    public void clickContinueButton(){
+    public void clickContinueButton() {
         continueButton.click();
     }
 
@@ -78,6 +80,7 @@ public class PayPage {
         assertEquals("Успешно", successNotificationTitle.getText());
         assertEquals("Операция одобрена Банком.", successNotificationContent.getText());
     }
+
     @Step("Проверка отображения сообщения об ошибки операции по оплате")
     public void getErrorNotification() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -95,38 +98,48 @@ public class PayPage {
     public void checkErrorNeedNumbers() {
         assertEquals("Должно состоять из цифр", ErrorValueNumber.getText());
     }
+
     @Step("Проверка появления ошибки 'Должно содержать валидный номер карты'")
     public void checkErrorNeedValidCard() {
         try {
             assertEquals("Должно содержать валидный номер карты", ErrorValueNumber.getText());
         } catch (RuntimeException ignored) {
-            fail("Сообщение об ошибки под полем отсутсвет");        }
+            fail("Сообщение об ошибки под полем отсутсвет");
         }
+    }
+
     @Step("Проверка появления ошибки 'Поле обязательно для заполнения'")
-    public void checkErrorNeedfuFillField() {
-        assertEquals("Поле обязательно для заполнения", ErrorValueNumber.getText());
-    }
-    @Step("Проверка появления ошибки 'Неверно указан срок действия карты'")
-    public void checkErrorCardExpiryDate() {
-        assertEquals("Неверно указан срок действия карты", ErrorValueNumber.getText());
-    }
-    @Step("Проверка появления ошибки 'Неверно указан срок действия карты'")
-    public void checkErrorCardHasExpired() {
-        assertEquals("Истёк срок действия карты", ErrorValueNumber.getText());
-    }
-
-    @Step("Проверка появления ошибки 'Должно состоять из букв'")
-    public void checkErrorNeedLetters() {
+    public void checkErrorNeedFillField() {
         try {
-            assertEquals("Должно состоять из букв", ErrorValueNumber.getText());
+            assertEquals("Поле обязательно для заполнения", ErrorValueNumber.getText());
         } catch (RuntimeException ignored) {
-            fail("Сообщение об ошибки под полем отсутсвет");        }
+            fail("Сообщение об ошибки под полем отсутсвет");
     }
+}
 
-    @Step("Проверка появления ошибки 'Должно содержать 3 цифры'")
-    public void checkErrorNeedTwoNumbers() {
-            assertEquals("Должно содержать 3 цифры", ErrorValueNumber.getText());
+@Step("Проверка появления ошибки 'Неверно указан срок действия карты'")
+public void checkErrorCardExpiryDate() {
+    assertEquals("Неверно указан срок действия карты", ErrorValueNumber.getText());
+}
 
+@Step("Проверка появления ошибки 'Неверно указан срок действия карты'")
+public void checkErrorCardHasExpired() {
+    assertEquals("Истёк срок действия карты", ErrorValueNumber.getText());
+}
+
+@Step("Проверка появления ошибки 'Должно состоять из букв'")
+public void checkErrorNeedLetters() {
+    try {
+        assertEquals("Должно состоять из букв", ErrorValueNumber.getText());
+    } catch (RuntimeException ignored) {
+        fail("Сообщение об ошибки под полем отсутсвет");
     }
+}
+
+@Step("Проверка появления ошибки 'Должно содержать 3 цифры'")
+public void checkErrorNeedTwoNumbers() {
+    assertEquals("Должно содержать 3 цифры", ErrorValueNumber.getText());
+
+}
 
 }

@@ -1,5 +1,6 @@
 package data;
 
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 //import org.apache.commons.dbutils.QueryRunner;
 
@@ -33,6 +34,7 @@ public class DataBaseHelper {
     }
 
     @SneakyThrows
+    @Step("Запрос статуса оплаты по карте из БД")
     public static String getStatusPayInDataBase() {
         var connector = getConn();
         var countStatement = connector.createStatement();

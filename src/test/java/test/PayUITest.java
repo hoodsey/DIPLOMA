@@ -4,7 +4,6 @@ import data.DataBaseHelper;
 import data.DataHelper;
 
 import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -102,7 +101,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithEmptyNumber());
         payPage.clickContinueButton();
-        payPage.checkErrorNeedfuFillField();
+        payPage.checkErrorNeedFillField();
     }
 
     @DisplayName("Отправка формы при вводе букв в поле Месяц")
@@ -129,7 +128,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithEmptyInMonth());
         payPage.clickContinueButton();
-        payPage.checkErrorNeedfuFillField(); // БАГ
+        payPage.checkErrorNeedFillField(); // БАГ
     }
 
     @DisplayName("Отправка формы при вводе невалидного числа в поле месяц")
@@ -138,7 +137,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectMonth());
         payPage.clickContinueButton();
-        payPage.checkErrorCardExpiryDate(); // ИСПРАВИТ план
+        payPage.checkErrorCardExpiryDate();
     }
 
     @DisplayName("Отправка формы при вводе невалидного года в поле Год")
@@ -147,7 +146,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectYear("23"));
         payPage.clickContinueButton();
-        payPage.checkErrorCardHasExpired(); // ИСПРАВИТ план
+        payPage.checkErrorCardHasExpired();
     }
 
     @DisplayName("Отправка формы при вводе букв в поле Год")
@@ -165,7 +164,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithNullInYear());
         payPage.clickContinueButton();
-        payPage.checkErrorNeedfuFillField(); // БАГ
+        payPage.checkErrorCardHasExpired(); // БАГ
     }
 
     @DisplayName("Отправка формы при вводе 30го года в поле Год")
@@ -174,7 +173,15 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectYear("30"));
         payPage.clickContinueButton();
-        payPage.checkErrorCardExpiryDate(); // исправить план
+        payPage.checkErrorCardExpiryDate();
+    }
+    @DisplayName("Отправка формы при пустом поле Год")
+    @Test
+    void shouldErrorPayWithEmptyYear() {
+        mainPage.paymentButtonClick();
+        payPage.inputData(DataHelper.generateBankCardWithInCorrectYear(null));
+        payPage.clickContinueButton();
+        payPage.checkErrorNeedFillField(); // БАГ
     }
 
     @DisplayName("Отправка формы при вводе цифр в поле Владелец")
@@ -192,7 +199,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectHolder(null));
         payPage.clickContinueButton();
-        payPage.checkErrorNeedfuFillField(); // БАГ
+        payPage.checkErrorNeedFillField();
     }
 
     @DisplayName("Отправка формы при вводе букв в поле CVC/CVV")
@@ -220,7 +227,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectCVC(null));
         payPage.clickContinueButton();
-        payPage.checkErrorNeedfuFillField();
+        payPage.checkErrorNeedFillField();
     }
 
     @DisplayName("Отправка формы при вводе нулей CVC/CVV")
@@ -229,7 +236,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectCVC("000"));
         payPage.clickContinueButton();
-        payPage.checkErrorNeedfuFillField(); // БАГ
+        payPage.checkErrorNeedFillField(); // БАГ
     }
 
 }
