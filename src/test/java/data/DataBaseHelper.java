@@ -38,7 +38,8 @@ public class DataBaseHelper {
         var resultSet = countStatement.executeQuery("SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1;");
         if (resultSet.next()) {
             return resultSet.getString("status");
-        } else return null;
+        }
+        return null;
     }
 
 

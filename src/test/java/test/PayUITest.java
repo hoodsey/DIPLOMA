@@ -156,7 +156,7 @@ public class PayUITest {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithNullInYear());
         payPage.clickContinueButton();
-        payPage.checkErrorCardHasExpired(); // БАГ
+        payPage.checkErrorCardHasExpired();
     }
 
     @DisplayName("Отправка формы оплаты по карте при вводе 30го года в поле Год")
