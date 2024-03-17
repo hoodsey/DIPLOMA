@@ -2,7 +2,6 @@ package data;
 
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-//import org.apache.commons.dbutils.QueryRunner;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,7 +10,6 @@ import static java.sql.DriverManager.getConnection;
 
 
 public class DataBaseHelper {
-//    private static final QueryRunner runner = new QueryRunner();
 
     private DataBaseHelper() {
     }
@@ -22,11 +20,10 @@ public class DataBaseHelper {
 
 
     @SneakyThrows
-    public static String getStatusCreditRequest() {
-        var codesql = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
-        var conn = getConn();
-        var countStatement = conn.createStatement();
-        var resultSet = countStatement.executeQuery(codesql);
+    public static String getStatusPayCreditInDataBase() {
+        var connector = getConn();
+        var countStatement = connector.createStatement();
+        var resultSet = countStatement.executeQuery("SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;");
         if (resultSet.next()) {
             return resultSet.getString("status");
         }
@@ -44,25 +41,5 @@ public class DataBaseHelper {
         } else return null;
     }
 
-    @SneakyThrows
-    public static int getCountOrderEntity() {
-        var codesql = "SELECT COUNT(*) AS total FROM order_entity;";
-        var conn = getConn();
-        var countStatement = conn.createStatement();
-        var resultSet = countStatement.executeQuery(codesql);
-        if (resultSet.next()) {
-            return resultSet.getInt("total");
-        }
-        return 0;
-    }
-
-
-//    @SneakyThrows
-//    public static void cleanDataBase() {
-//        var connection = getConn();
-//        runner.execute(connection, "DELETE FROM credit_request_entity");
-//        runner.execute(connection, "DELETE FROM order_entity");
-//        runner.execute(connection, "DELETE FROM payment_entity");
-//    }
 
 }

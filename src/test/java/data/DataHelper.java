@@ -9,13 +9,8 @@ import java.util.Locale;
 
 public class DataHelper {
     private static Faker fakerEn = new Faker(new Locale("en"));
-    private static Faker fakerRu = new Faker(new Locale("ru"));
 
     private DataHelper() {
-    }
-
-    public static String getLastYear(int minusOneYear) {
-        return LocalDate.now().minusYears(minusOneYear).format(DateTimeFormatter.ofPattern("yy"));
     }
 
     //ДОРАБОТКА
@@ -30,7 +25,6 @@ public class DataHelper {
     public static String generateYear(int year) {
         return LocalDate.now().plusYears(year).format(DateTimeFormatter.ofPattern("yy"));
     }
-
 
     @Value
     public static class bankCard {
@@ -150,16 +144,6 @@ public class DataHelper {
                 generateYear(0),
                 generateHolderName(),
                 cvc);
-    }
-
-    //Без заполнения полей формы
-    public static bankCard getCardInfoWithEmptyFields() {
-        return new bankCard(
-                null,
-                null,
-                null,
-                null,
-                null);
     }
 
 }

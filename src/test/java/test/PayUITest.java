@@ -53,16 +53,6 @@ public class PayUITest {
         assertEquals("APPROVED", actual);
     }
 
-//    @Step("Отправка формы оплтаты в кредит при валидных данных карты")
-//    @Test
-//    void shouldSuccessCreditByApprovedCard(){
-//        mainPage.creditButtonClick();
-//        payPage.inputData(DataHelper.generateBankCardApproved());
-//        payPage.clickContinueButton();
-//        payPage.getSuccessPayNotification();
-//        //var actual = DataBaseHelper.getStatusPaymentRequest();
-//        assertEquals("APPROVED", "APPROVED");
-//    }
 
     // негативный тест оплаты
     @DisplayName("Отправка формы оплтаты по карте при невалидных данных карты")
@@ -77,7 +67,7 @@ public class PayUITest {
     }
 
     // негативные проверки заполнение формы оплаты
-    @DisplayName("Отправка формы при вводе букв в поле Номер карты")
+    @DisplayName("Отправка формы оплаты по карте при вводе букв в поле Номер карты")
     @Test
     void shouldErrorPayWithLettersInNumber() {
         mainPage.paymentButtonClick();
@@ -86,7 +76,7 @@ public class PayUITest {
         payPage.checkErrorNeedNumbers(); // БАГ
     }
 
-    @DisplayName("Отправка формы при вводе нулей в поле Номер карты")
+    @DisplayName("Отправка формы оплаты по карте при вводе нулей в поле Номер карты")
     @Test
     void shouldErrorPayWithNullInNumber() {
         mainPage.paymentButtonClick();
@@ -95,7 +85,7 @@ public class PayUITest {
         payPage.checkErrorNeedValidCard(); //БАГ
     }
 
-    @DisplayName("Отправка формы при пустом поле Номер карты")
+    @DisplayName("Отправка формы оплаты по карте при пустом поле Номер карты")
     @Test
     void shouldErrorPayWithEmptyNumber() {
         mainPage.paymentButtonClick();
@@ -104,7 +94,7 @@ public class PayUITest {
         payPage.checkErrorNeedFillField();
     }
 
-    @DisplayName("Отправка формы при вводе букв в поле Месяц")
+    @DisplayName("Отправка формы оплаты по карте при вводе букв в поле Месяц")
     @Test
     void shouldErrorPayWithLettersInMonth() {
         mainPage.paymentButtonClick();
@@ -113,7 +103,7 @@ public class PayUITest {
         payPage.checkErrorNeedNumbers();
     }
 
-    @DisplayName("Отправка формы при вводе нулей в поле Месяц")
+    @DisplayName("Отправка формы оплаты по карте при вводе нулей в поле Месяц")
     @Test
     void shouldErrorPayWithNullInMonth() {
         mainPage.paymentButtonClick();
@@ -122,7 +112,7 @@ public class PayUITest {
         payPage.checkErrorCardExpiryDate();
     }
 
-    @DisplayName("Отправка формы при вводе пустом поле месяц")
+    @DisplayName("Отправка формы оплаты по карте при вводе пустом поле месяц")
     @Test
     void shouldErrorPayWithEmptyInMonth() {
         mainPage.paymentButtonClick();
@@ -131,7 +121,7 @@ public class PayUITest {
         payPage.checkErrorNeedFillField(); // БАГ
     }
 
-    @DisplayName("Отправка формы при вводе невалидного числа в поле месяц")
+    @DisplayName("Отправка формы оплаты по карте при вводе невалидного числа в поле месяц")
     @Test
     void shouldErrorPayWithInCorrectMonth() {
         mainPage.paymentButtonClick();
@@ -140,7 +130,7 @@ public class PayUITest {
         payPage.checkErrorCardExpiryDate();
     }
 
-    @DisplayName("Отправка формы при вводе невалидного года в поле Год")
+    @DisplayName("Отправка формы оплаты по карте при вводе невалидного года в поле Год")
     @Test
     void shouldErrorPayWithInCorrectYear() {
         mainPage.paymentButtonClick();
@@ -149,7 +139,7 @@ public class PayUITest {
         payPage.checkErrorCardHasExpired();
     }
 
-    @DisplayName("Отправка формы при вводе букв в поле Год")
+    @DisplayName("Отправка формы оплаты по карте при вводе букв в поле Год")
     @Test
     void shouldErrorPayWithLettersInYear() {
         mainPage.paymentButtonClick();
@@ -158,7 +148,7 @@ public class PayUITest {
         payPage.checkErrorNeedNumbers(); // БАГ
     }
 
-    @DisplayName("Отправка формы при вводе нулей в поле Год")
+    @DisplayName("Отправка формы оплаты по карте при вводе нулей в поле Год")
     @Test
     void shouldErrorPayWithNullInYear() {
         mainPage.paymentButtonClick();
@@ -167,7 +157,7 @@ public class PayUITest {
         payPage.checkErrorCardHasExpired(); // БАГ
     }
 
-    @DisplayName("Отправка формы при вводе 30го года в поле Год")
+    @DisplayName("Отправка формы оплаты по карте при вводе 30го года в поле Год")
     @Test
     void shouldErrorPayWithInCorrectFutureYear() {
         mainPage.paymentButtonClick();
@@ -175,7 +165,7 @@ public class PayUITest {
         payPage.clickContinueButton();
         payPage.checkErrorCardExpiryDate();
     }
-    @DisplayName("Отправка формы при пустом поле Год")
+    @DisplayName("Отправка формы оплаты по карте при пустом поле Год")
     @Test
     void shouldErrorPayWithEmptyYear() {
         mainPage.paymentButtonClick();
@@ -184,7 +174,7 @@ public class PayUITest {
         payPage.checkErrorNeedFillField(); // БАГ
     }
 
-    @DisplayName("Отправка формы при вводе цифр в поле Владелец")
+    @DisplayName("Отправка формы оплаты по карте при вводе цифр в поле Владелец")
     @Test
     void shouldErrorPayWithNumberInHolder() {
         mainPage.paymentButtonClick();
@@ -193,7 +183,7 @@ public class PayUITest {
         payPage.checkErrorNeedLetters(); // БАГ
     }
 
-    @DisplayName("Отправка формы при пустом поле Владелец")
+    @DisplayName("Отправка формы оплаты по карте при пустом поле Владелец")
     @Test
     void shouldErrorPayWithNullHolder() {
         mainPage.paymentButtonClick();
@@ -202,7 +192,7 @@ public class PayUITest {
         payPage.checkErrorNeedFillField();
     }
 
-    @DisplayName("Отправка формы при вводе букв в поле CVC/CVV")
+    @DisplayName("Отправка формы оплаты по карте при вводе букв в поле CVC/CVV")
     @Test
     void shouldErrorPayWithLettersInCVC() {
         mainPage.paymentButtonClick();
@@ -211,7 +201,7 @@ public class PayUITest {
         payPage.checkErrorNeedNumbers(); // БАГ
     }
 
-    @DisplayName("Отправка формы при вводе двух цифр в поле CVC/CVV")
+    @DisplayName("Отправка формы оплаты по карте при вводе двух цифр в поле CVC/CVV")
     @Test
     void shouldErrorPayWithTwoNumbersInCVC() {
         mainPage.paymentButtonClick();
@@ -222,7 +212,7 @@ public class PayUITest {
 
 
     @Test
-    @DisplayName("Отправка формы при пустом в поле CVC/CVV")
+    @DisplayName("Отправка формы оплаты по карте при пустом в поле CVC/CVV")
     void shouldErrorPayEmptyCVC() {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardWithInCorrectCVC(null));
@@ -230,7 +220,7 @@ public class PayUITest {
         payPage.checkErrorNeedFillField();
     }
 
-    @DisplayName("Отправка формы при вводе нулей CVC/CVV")
+    @DisplayName("Отправка формы оплаты по карте при вводе нулей CVC/CVV")
     @Test
     void shouldErrorPayWithNullInCVC() {
         mainPage.paymentButtonClick();

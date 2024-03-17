@@ -14,11 +14,11 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class PayPage {
+public class CreditPage {
 
     private WebDriver driver;
 
-    public PayPage(WebDriver driver) {
+    public CreditPage(WebDriver driver) {
         this.driver = driver;
     }
 
