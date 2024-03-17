@@ -60,9 +60,9 @@ public class CreditCardUITest {
         mainPage.creditButtonClick();
         creditPage.inputData(DataHelper.generateBankCardDeclined());
         creditPage.clickContinueButton();
-        creditPage.getErrorNotification(); // БАГ
         var actual = DataBaseHelper.getStatusPayCreditInDataBase();
         assertEquals("DECLINED", actual);
+        creditPage.getErrorNotification(); // БАГ
     }
 
     // негативные проверки заполнение формы оплаты

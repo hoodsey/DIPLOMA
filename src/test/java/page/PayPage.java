@@ -35,6 +35,8 @@ public class PayPage {
 
     @FindBy(css = "[placeholder='999']")
     private WebElement cvc;
+    @FindBy(css =  ".notification_visible")
+    private WebElement visibleNotification;
     @FindBy(css = ".notification_status_ok div.notification__title")
     private WebElement successNotificationTitle;
     @FindBy(css = ".notification_status_ok div.notification__content")
@@ -81,13 +83,19 @@ public class PayPage {
         Assertions.assertEquals("Успешно", successNotificationTitle.getText());
         Assertions.assertEquals("Операция одобрена Банком.", successNotificationContent.getText());
     }
-
+    @Step("Ожидание загрузки сообщения об ошибки операции по оплате")
+    public void waitErrorNotification() {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(visibleNotification));
+    }
     @Step("Проверка отображения сообщения об ошибки операции по оплате")
     public void getErrorNotification() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOf(errorNotificationTitle));
-        Assertions.assertEquals("Ошибка", errorNotificationTitle.getText());
-        Assertions.assertEquals("Ошибка! Банк отказал в проведении операции.", errorNotificationContent.getText());
+        try {
+            Assertions.assertEquals("Ошибка", errorNotificationTitle.getText());
+            Assertions.assertEquals("Ошибка! Банк отказал в проведении операции.", errorNotificationContent.getText());
+        } catch (RuntimeException exception){
+            Assertions.fail("Сообщение об ошибки оплаты остутствует");
+        }
     }
 
     @Step("Проверка появления ошибки 'Неверный формат'")

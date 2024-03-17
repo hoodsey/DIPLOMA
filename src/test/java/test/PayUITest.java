@@ -43,7 +43,7 @@ public class PayUITest {
 
     // позитивный тест оплаты
     @Test
-    @DisplayName("Отправка формы оплтаты по карте при валидных данных карты")
+    @DisplayName("Отправка формы оплаты по карте при валидных данных карты")
     void shouldSuccessPayByApprovedCard() {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardApproved());
@@ -55,15 +55,16 @@ public class PayUITest {
 
 
     // негативный тест оплаты
-    @DisplayName("Отправка формы оплтаты по карте при невалидных данных карты")
+    @DisplayName("Отправка формы оплаты по карте при невалидных данных карты")
     @Test
     void shouldErrorPayByDeclinedCard() {
         mainPage.paymentButtonClick();
         payPage.inputData(DataHelper.generateBankCardDeclined());
         payPage.clickContinueButton();
-        payPage.getErrorNotification(); // БАГ
+        payPage.waitErrorNotification();
         var actual = DataBaseHelper.getStatusPayInDataBase();
         assertEquals("DECLINED", actual);
+        payPage.getErrorNotification(); // БАГ
     }
 
     // негативные проверки заполнение формы оплаты
