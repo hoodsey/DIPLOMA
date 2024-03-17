@@ -1,5 +1,5 @@
 # краткое описание
- Написано  UI тесты для приложения покупки путеществий по карте или в кредит через web-форму на java+junit5+selenium+docker+mysql+postgresSql+Allure
+ Написано  UI тесты для приложения покупки путешествий по карте или в кредит через web-форму на java+junit5+selenium+docker+mysql+postgresSql+Allure
 
  ## Тестовое окружение:
  - Операционная система: MacOS Sonoma 14.2
