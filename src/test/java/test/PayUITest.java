@@ -84,6 +84,7 @@ public class PayUITest {
         payPage.inputData(DataHelper.generateBankCardWithNullInNumber());
         payPage.clickContinueButton();
         payPage.checkErrorNeedValidCard(); //БАГ
+
     }
 
     @DisplayName("Отправка формы оплаты по карте при пустом поле Номер карты")

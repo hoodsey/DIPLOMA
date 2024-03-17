@@ -108,7 +108,7 @@ public class CreditCardUITest {
         mainPage.creditButtonClick();
         creditPage.inputData(DataHelper.generateBankCardWithNullInMonth());
         creditPage.clickContinueButton();
-        creditPage.checkErrorCardExpiryDate(); //БАГ
+        creditPage.checkErrorCardExpiryDate();
     }
 
     @DisplayName("Отправка формы оплаты в кредит при вводе пустом поле месяц")
@@ -153,7 +153,7 @@ public class CreditCardUITest {
         mainPage.creditButtonClick();
         creditPage.inputData(DataHelper.generateBankCardWithNullInYear());
         creditPage.clickContinueButton();
-        creditPage.checkErrorCardHasExpired(); // БАГ
+        creditPage.checkErrorCardExpiryDate();
     }
 
     @DisplayName("Отправка формы оплаты в кредит при вводе 30го года в поле Год")

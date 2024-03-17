@@ -127,7 +127,7 @@ public class DataHelper {
     public static bankCard generateBankCardWithNullInYear() {
         return new bankCard(getApprovedNumberCard(),
                 generateMonth(0),
-                null,
+                "00",
                 generateHolderName(),
                 fakerEn.numerify("###"));
     }
