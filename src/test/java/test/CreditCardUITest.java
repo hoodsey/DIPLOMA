@@ -153,7 +153,7 @@ public class CreditCardUITest {
         mainPage.creditButtonClick();
         creditPage.inputData(DataHelper.generateBankCardWithNullInYear());
         creditPage.clickContinueButton();
-        creditPage.checkErrorCardExpiryDate();
+        creditPage.checkErrorCardHasExpired();
     }
 
     @DisplayName("Отправка формы оплаты в кредит при вводе 30го года в поле Год")
